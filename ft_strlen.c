@@ -6,7 +6,7 @@
 /*   By: rpapagna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:29:31 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/02/19 22:18:33 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/03/20 16:48:17 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	if (*str)
+	if (str && *str)
 	{
 		while (str[i] != '\0')
 			i++;
