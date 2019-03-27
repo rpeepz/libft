@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strpop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpapagna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 18:04:46 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/02/21 12:31:02 by rpapagna         ###   ########.fr       */
+/*   Created: 2019/03/18 22:53:26 by rpapagna          #+#    #+#             */
+/*   Updated: 2019/03/19 18:56:23 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strpop(char *str, size_t id)
 {
+	size_t	len;
 	size_t	i;
-	size_t	j;
-	size_t	dst_len;
-	size_t	src_len;
+	char	*popped;
 
-	i = ft_strlen(dst);
-	j = 0;
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize < dst_len + 1)
-		return (src_len + dstsize);
-	if (dstsize > i + 1)
+	len = ft_strlen(str);
+	if (id < len)
 	{
-		while (i < dstsize - 1)
-			dst[i++] = src[j++];
-		dst[i] = '\0';
+		if (!(popped = (char *)malloc(len * sizeof(char))))
+			return (NULL);
+		i = -1;
+		while (++i < id)
+			popped[i] = str[i];
+		while (++i < len)
+			popped[i - 1] = str[i];
+		popped[i] = '\0';
+		return (popped);
 	}
-	return (dst_len + src_len);
+	return (NULL);
 }

@@ -6,13 +6,13 @@
 #    By: rpapagna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/13 21:22:38 by rpapagna          #+#    #+#              #
-#    Updated: 2019/02/13 21:22:41 by rpapagna         ###   ########.fr        #
+#    Updated: 2019/03/27 12:36:39 by rpapagna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME	= libft.a
-CFLAGS	= -Wall -Werror -Wextra -I. -c
+CFLAGS	= -Wall -Werror -Wextra -I includes/
 FILES	= ft_atoi.c \
 			ft_itoa.c \
 			ft_countwords.c \
@@ -33,6 +33,7 @@ FILES	= ft_atoi.c \
 			ft_lstadd.c \
 			ft_lstiter.c \
 			ft_strnew.c \
+			ft_strcnew.c \
 			ft_lstnew.c \
 			ft_strdel.c \
 			ft_strclr.c \
@@ -46,14 +47,17 @@ FILES	= ft_atoi.c \
 			ft_strjoin.c \
 			ft_strtrim.c \
 			ft_strsplit.c \
+			ft_strpop.c \
 			ft_strcat.c \
 			ft_strdup.c \
+			ft_strndup.c \
 			ft_strncmp.c \
 			ft_strstr.c \
 			ft_isalnum.c \
 			ft_isprint.c \
 			ft_memcpy.c \
 			ft_strchr.c \
+			ft_strchri.c \
 			ft_strlcat.c \
 			ft_strncpy.c \
 			ft_tolower.c \
@@ -76,16 +80,18 @@ FILES	= ft_atoi.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c
 OBJ		= $(FILES:.c=.o)
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		ar rcs $(NAME) $(OBJ)
+		@ar rcs $(NAME) $(OBJ)
 
 clean:
-		rm -f $(OBJ)
+		@echo "Removing objects"
+		@rm -f $(OBJ)
+		@SLEEP .5
 
 fclean: clean
-		rm -f $(NAME)
+		@echo "Removing archive"
+		@rm -f $(NAME)
 
 re: fclean all

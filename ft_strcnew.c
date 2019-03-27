@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strcnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpapagna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 18:04:46 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/02/21 12:31:02 by rpapagna         ###   ########.fr       */
+/*   Created: 2019/03/20 17:13:49 by rpapagna          #+#    #+#             */
+/*   Updated: 2019/03/20 17:13:51 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char			*ft_strcnew(size_t len, char c)
 {
+	char	*new;
 	size_t	i;
-	size_t	j;
-	size_t	dst_len;
-	size_t	src_len;
 
-	i = ft_strlen(dst);
-	j = 0;
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize < dst_len + 1)
-		return (src_len + dstsize);
-	if (dstsize > i + 1)
-	{
-		while (i < dstsize - 1)
-			dst[i++] = src[j++];
-		dst[i] = '\0';
-	}
-	return (dst_len + src_len);
+	if (len)
+		if (!(new = (char *)malloc(sizeof(char) * len)))
+			return (NULL);
+	i = -1;
+	while (++i < len)
+		new[i] = c;
+	new[i] = '\0';
+	return (new);
 }

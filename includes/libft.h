@@ -69,6 +69,7 @@ void				ft_strdel(char **as);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+char				*ft_strcnew(size_t len, char c);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strequ(char const *s1, char const *s2);
@@ -100,5 +101,7 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 int					ft_intlen(int num);
 int					ft_countwords(char const *str, char c);
+int					ft_strchri(const char *s, int c);
+char				*ft_strpop(char *str, size_t id);
 
 #endif
