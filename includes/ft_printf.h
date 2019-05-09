@@ -6,7 +6,7 @@
 /*   By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 22:47:33 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/04/17 04:42:05 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/05/03 03:31:08 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <stdarg.h>
 
+# define LEN(X) (int)ft_strlen(X)
 # define IF_THEN(X, Y) if(X) {(Y);}
 # define IF_RETURN(X, Y) if(X) {return (Y);}
 
@@ -35,9 +36,9 @@ typedef struct	s_flag
 
 typedef struct	s_mods
 {
-	t_flag		flags;
+	t_flag		fl;
 	int			width;
-	int			precision;
+	int			prcsn;
 	int			length;
 }				t_mods;
 
@@ -50,29 +51,29 @@ typedef struct	s_dispatch_specifier
 **GETTING AND SETTING FUNCTIONS
 */
 
-void			set_flags(t_flag *flags, char c);
+void			set_flags(t_flag *fl, char c);
 void			print_one(char **str);
-void			errors(int err_num, char **str);
+int				get_pre_float(long double number, int ret);
+char			*num_string_base(long long num, int base);
+char			*num_string_u_base(unsigned long long num, int base);
 t_mods			get_mods(char **str, va_list ap);
 int				is_flag(char x);
 int				get_type_specifier(char x);
+int				get_undef_length(char x);
+
 /*
 **CONVERSION FUNCTIONS
 */
 
 int				convert_percent(t_mods modifiers);
-int				convert_d(t_mods modifiers, va_list ap);
+int				convert_i(t_mods modifiers, va_list ap);
 int				convert_c(t_mods modifiers, va_list ap);
 int				convert_s(t_mods modifiers, va_list ap);
 int				convert_p(t_mods modifiers, va_list ap);
-int				convert_o(t_mods modifiers, va_list ap);
-int				convert_u(t_mods modifiers, va_list ap);
-int				convert_x(t_mods modifiers, va_list ap);
-int				convert_f(t_mods modifiers, va_list ap);
-int				convert_k(t_mods modifiers, va_list ap);
-int				convert_help(t_mods modifiers, va_list ap);
-/*
-**	char		flag_bits;
-**	add to t_mods for bitwise operation
-*/
+int				convert_o(t_mods modifiers, va_list ap, int i);
+int				convert_u(t_mods modifiers, va_list ap, int i);
+int				convert_x(t_mods modifiers, va_list ap, int i);
+int				convert_f(t_mods modifiers, va_list ap, int i);
+int				convert_b(t_mods modifiers, va_list ap, int i);
+
 #endif
