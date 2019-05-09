@@ -6,7 +6,7 @@
 #    By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/13 21:22:38 by rpapagna          #+#    #+#              #
-#    Updated: 2019/05/09 01:45:56 by rpapagna         ###   ########.fr        #
+#    Updated: 2019/05/09 02:04:17 by rpapagna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,14 +87,17 @@ OBJ		= $(patsubst %.c,%.o,$(SRCS))
 all: $(NAME)
 
 $(NAME):
-		
+		@printf "[$(GREEN)libft.$(NC)]\t\t[$(RED):##  :$(NC)]\r"
 		@gcc $(CFLAGS) -I includes/libft.h -c $(addprefix srcs/,$(SRCS))
+		@printf "[$(GREEN)libft.$(NC)]\t\t[$(RED):### :$(NC)]\r"
 		@ar -rcs $(NAME) $(OBJ)
 
 clean:
+		@printf "[$(GREEN)clean.$(NC)]\t\t[$(RED):##  :$(NC)]\r"
 		@rm -rf $(OBJ)
 
 fclean: clean
+		@printf "[$(GREEN)fclean$(NC)]\t\t[$(RED):### :$(NC)]\r"
 		@rm -rf $(NAME)
 
 re: fclean all
