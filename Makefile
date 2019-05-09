@@ -6,7 +6,7 @@
 #    By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/13 21:22:38 by rpapagna          #+#    #+#              #
-#    Updated: 2019/04/22 18:46:26 by rpapagna         ###   ########.fr        #
+#    Updated: 2019/05/09 01:45:56 by rpapagna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ SRCS	= ft_atoi.c \
 		ft_islower.c \
 		ft_isprint.c \
 		ft_isupper.c \
-		ft_itoa.c \
 		ft_itoa_base.c \
+		ft_itoa.c \
 		ft_lstadd.c \
 		ft_lstdel.c \
 		ft_lstdelone.c \
@@ -40,6 +40,7 @@ SRCS	= ft_atoi.c \
 		ft_memmove.c \
 		ft_memset.c \
 		ft_pipewrench.c \
+		ft_printf.c \
 		ft_putchar.c \
 		ft_putchar_fd.c \
 		ft_putendl.c \
@@ -86,17 +87,14 @@ OBJ		= $(patsubst %.c,%.o,$(SRCS))
 all: $(NAME)
 
 $(NAME):
-		@echo "Building libft"
+		
 		@gcc $(CFLAGS) -I includes/libft.h -c $(addprefix srcs/,$(SRCS))
 		@ar -rcs $(NAME) $(OBJ)
-		@echo "Done"
-		@SLEEP .5
 
 clean:
 		@rm -rf $(OBJ)
 
 fclean: clean
-		@echo "Removing archive"
 		@rm -rf $(NAME)
 
 re: fclean all
