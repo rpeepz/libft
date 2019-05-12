@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-const static char	g_base[] = "0123456789ABCDEF";
+static const char	g_base[] = "0123456789ABCDEF";
 
 char	*ft_itoa_base(int n, int base)
 {

@@ -41,11 +41,17 @@ static int		plunger(va_list ap, int depth)
 	return (depth);
 }
 
+/*
+	if (ft_isdigit(**str))
+	{
+		x = ft_atoi(*str);
+	}
+*/
+
 static int		pipe_cutter(char **str, va_list ap)
 {
 	int		pointer_depth;
 	int		freed;
-	int		x;
 
 	pointer_depth = 0;
 	while (**str == KEY)
@@ -54,10 +60,6 @@ static int		pipe_cutter(char **str, va_list ap)
 		pointer_depth += 1;
 	}
 	freed = 0;
-	if (ft_isdigit(**str))
-	{
-		x = ft_atoi(*str);
-	}
 	if (**str == 's')
 	{
 		freed += plunger(ap, pointer_depth);
