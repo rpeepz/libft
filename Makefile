@@ -98,10 +98,11 @@ SRCS	= ft_atoi.c \
 OBJ		= $(patsubst %.c,%.o,$(SRCS))
 
 all: $(NAME)
+		@printf "[libft.]\t\t[:##########:]\n"
 
 $(NAME):
 		@printf "[libft.]\t\t[:#         :]\r"
-		@gcc $(CFLAGS) -I includes/libft.h -c $(addprefix srcs/,$(SRCS))
+		@gcc $(CFLAGS) -I includes/ -c $(addprefix srcs/,$(SRCS))
 		@printf "[libft.]\t\t[:##        :]\r"
 		@ar -rcs $(NAME) $(OBJ)
 		@printf "[libft.]\t\t[:###       :]\r"
@@ -117,3 +118,5 @@ fclean: clean
 		@printf "[fclean]\t\t[:####      :]\r"
 
 re: fclean all
+
+.PHONY: all clean fclean re

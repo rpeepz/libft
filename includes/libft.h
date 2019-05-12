@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdint.h>
 
 # define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f')
 # define IF_THEN(X, Y) if(X) {(Y);}
