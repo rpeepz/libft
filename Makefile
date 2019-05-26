@@ -6,12 +6,41 @@
 #    By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/13 21:22:38 by rpapagna          #+#    #+#              #
-#    Updated: 2019/05/09 02:58:25 by rpapagna         ###   ########.fr        #
+#    Updated: 2019/05/26 16:57:19 by rpapagna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
+
+#COLOR OUTPUT OPIONS
+RED		=\033[0;31m
+GREEN	=\033[0;32m
+YELLOW	=\033[0;33m
+MAG		=\033[0;35m
+NC		=\033[0m
+
 CFLAGS	= -Wall -Werror -Wextra
+INCL	= -I includes/
+
+PRINTF	= finders.c \
+		do_things.c \
+		get_mods.c \
+		convert_b.c \
+		convert_c.c \
+		convert_f.c \
+		convert_i.c \
+		convert_o.c \
+		convert_p.c \
+		convert_s.c \
+		convert_u.c \
+		convert_x.c \
+		convert_percent.c
+
+SPRINTF	= get_mod.c \
+		c_to_buf.c \
+		i_to_buf.c \
+		s_to_buf.c
+
 SRCS	= ft_atoi.c \
 		ft_bzero.c \
 		ft_countwords.c \
@@ -41,14 +70,15 @@ SRCS	= ft_atoi.c \
 		ft_memset.c \
 		ft_pipewrench.c \
 		ft_printf.c \
-		ft_putchar.c \
 		ft_putchar_fd.c \
-		ft_putendl.c \
+		ft_putchar.c \
 		ft_putendl_fd.c \
-		ft_putnbr.c \
+		ft_putendl.c \
 		ft_putnbr_fd.c \
-		ft_putstr.c \
+		ft_putnbr.c \
 		ft_putstr_fd.c \
+		ft_putstr.c \
+		ft_sprintf.c \
 		ft_strcat.c \
 		ft_strchr.c \
 		ft_strchri.c \
@@ -81,41 +111,33 @@ SRCS	= ft_atoi.c \
 		ft_strtrim.c \
 		ft_tolower.c \
 		ft_toupper.c \
-		get_next_line.c \
-		convert_percent.c \
-		convert_b.c \
-		convert_c.c \
-		convert_f.c \
-		convert_i.c \
-		convert_o.c \
-		convert_p.c \
-		convert_s.c \
-		convert_u.c \
-		convert_x.c \
-		do_things.c \
-		get_mods.c \
-		finders.c
+		get_next_line.c
+
 OBJ		= $(patsubst %.c,%.o,$(SRCS))
+OBJ		+= $(patsubst %.c,%.o,$(PRINTF))
+OBJ		+= $(patsubst %.c,%.o,$(SPRINTF))
 
 all: $(NAME)
-		@printf "[libft.]\t\t[:##########:]\n"
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG)OK!$(NC)]\n" #PRINT
 
 $(NAME):
-		@printf "[libft.]\t\t[:#         :]\r"
-		@gcc $(CFLAGS) -I includes/ -c $(addprefix srcs/,$(SRCS))
-		@printf "[libft.]\t\t[:##        :]\r"
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
+		@gcc -g $(CFLAGS) -c $(addprefix srcs/ft_printf/,$(PRINTF)) $(INCL)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
+		@gcc -g $(CFLAGS) -c $(addprefix srcs/ft_sprintf/,$(SPRINTF)) $(INCL)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
+		@gcc -g $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(INCL)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
 		@ar -rcs $(NAME) $(OBJ)
-		@printf "[libft.]\t\t[:###       :]\r"
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
 
 clean:
-		@printf "[clean.]\t\t[:#         :]\r"
+		@printf "[$(RED)obj$(NC)]\t\tRm objects\n" #PRINT
 		@rm -rf $(OBJ)
-		@printf "[clean.]\t\t[:##        :]\r"
 
 fclean: clean
-		@printf "[fclean]\t\t[:###       :]\r"
+		@printf "[$(RED)$(NAME)$(NC)]\tRm archive\n"
 		@rm -rf $(NAME)
-		@printf "[fclean]\t\t[:####      :]\r"
 
 re: fclean all
 

@@ -6,11 +6,11 @@
 /*   By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 19:04:29 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/05/05 22:42:13 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:35:36 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/libft.h"
 
 /*
 **  f, F    The double argument is rounded and converted to decimal notation in
@@ -127,9 +127,9 @@ static char		**num_string_modld(long double num, t_mods mod, int add_zeros)
 	{
 		zeros = ft_strcnew(add_zeros, '0');
 		zeros = ft_strncpy(zeros + (add_zeros - len), str[1], len);
-		ft_pipewrench("-s", str[1]);
-		str[1] = ft_strdup(zeros - (add_zeros - len));
-		ft_pipewrench("-s", zeros - (add_zeros - len));
+		IF_THEN(ft_pipewrench("-s", str[1]),
+		(str[1] = ft_strdup(zeros - (add_zeros - len))) &&
+		ft_pipewrench("-s", zeros - (add_zeros - len)));
 	}
 	return (str);
 }

@@ -6,11 +6,11 @@
 /*   By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 22:34:52 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/05/03 00:57:17 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:31:39 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
 /*
 **	Produces output according to a format string passed into funtion.
@@ -18,7 +18,7 @@
 **	as standard logic for basic printf.
 */
 
-int				parse_string(char **str, va_list ap)
+static int		parse_string(char **str, va_list ap)
 {
 	int		i;
 	t_mods	modifier;
