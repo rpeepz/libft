@@ -6,11 +6,14 @@
 #    By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/13 21:22:38 by rpapagna          #+#    #+#              #
-#    Updated: 2019/05/26 16:57:19 by rpapagna         ###   ########.fr        #
+#    Updated: 2019/05/28 17:50:13 by rpapagna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
+
+CFLAGS	= -Wall -Werror -Wextra -g
+INCL	= -I includes/
 
 #COLOR OUTPUT OPIONS
 RED		=\033[0;31m
@@ -19,27 +22,11 @@ YELLOW	=\033[0;33m
 MAG		=\033[0;35m
 NC		=\033[0m
 
-CFLAGS	= -Wall -Werror -Wextra
-INCL	= -I includes/
-
-PRINTF	= finders.c \
-		do_things.c \
-		get_mods.c \
-		convert_b.c \
-		convert_c.c \
-		convert_f.c \
-		convert_i.c \
-		convert_o.c \
-		convert_p.c \
-		convert_s.c \
-		convert_u.c \
-		convert_x.c \
-		convert_percent.c
-
-SPRINTF	= get_mod.c \
-		c_to_buf.c \
-		i_to_buf.c \
-		s_to_buf.c
+#PATHS
+OBJ_PATH	= obj
+LIB_PATH	= srcs
+PRNTF_PATH	=$(LIB_PATH)/ft_printf
+SPRNTF_PATH	=$(LIB_PATH)/ft_sprintf
 
 SRCS	= ft_atoi.c \
 		ft_bzero.c \
@@ -112,28 +99,40 @@ SRCS	= ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c \
 		get_next_line.c
+PRINTF	= finders.c \
+		do_things.c \
+		get_mods.c \
+		convert_b.c \
+		convert_c.c \
+		convert_f.c \
+		convert_i.c \
+		convert_o.c \
+		convert_p.c \
+		convert_s.c \
+		convert_u.c \
+		convert_x.c \
+		convert_percent.c
+SPRINTF	= get_mod.c \
+		c_to_buf.c \
+		i_to_buf.c \
+		s_to_buf.c
 
-OBJ		= $(patsubst %.c,%.o,$(SRCS))
-OBJ		+= $(patsubst %.c,%.o,$(PRINTF))
-OBJ		+= $(patsubst %.c,%.o,$(SPRINTF))
+OBJ = $(addprefix $(OBJ_PATH)/,$(SRCS:.c=.o))
+OBJ += $(addprefix $(OBJ_PATH)/,$(PRINTF:.c=.o))
+OBJ += $(addprefix $(OBJ_PATH)/,$(SPRINTF:.c=.o))
+
+FILES = $(addprefix $(LIB_PATH)/,$(SRCS))
+FILES += $(addprefix $(PRNTF_PATH)/,$(PRINTF))
+FILES += $(addprefix $(SPRNTF_PATH)/,$(SPRINTF))
+
+.PHONY: clean
 
 all: $(NAME)
 		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG)OK!$(NC)]\n" #PRINT
 
-$(NAME):
-		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
-		@gcc -g $(CFLAGS) -c $(addprefix srcs/ft_printf/,$(PRINTF)) $(INCL)
-		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
-		@gcc -g $(CFLAGS) -c $(addprefix srcs/ft_sprintf/,$(SPRINTF)) $(INCL)
-		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
-		@gcc -g $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(INCL)
-		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
-		@ar -rcs $(NAME) $(OBJ)
-		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
-
 clean:
 		@printf "[$(RED)obj$(NC)]\t\tRm objects\n" #PRINT
-		@rm -rf $(OBJ)
+		@rm -rf obj
 
 fclean: clean
 		@printf "[$(RED)$(NAME)$(NC)]\tRm archive\n"
@@ -141,4 +140,22 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+$(NAME): $(OBJ)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
+		@ar -rcs $(NAME) $(OBJ)
+
+$(OBJ_PATH):
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
+		@mkdir -p $@
+
+$(OBJ_PATH)/%.o: $(LIB_PATH)/%.c | $(OBJ_PATH)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
+		@gcc $(CFLAGS) $(INCL) -o $@ -c $<
+
+$(OBJ_PATH)/%.o: $(PRNTF_PATH)/%.c | $(OBJ_PATH)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):\:$(NC)]\r" #PRINT
+		@gcc $(CFLAGS) $(INCL) -o $@ -c $<
+
+$(OBJ_PATH)/%.o: $(SPRNTF_PATH)/%.c | $(OBJ_PATH)
+		@printf "[$(GREEN)$(NAME)$(NC)]\t\t[$(MAG):/:$(NC)]\r" #PRINT
+		@gcc $(CFLAGS) $(INCL) -o $@ -c $<
