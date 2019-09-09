@@ -12,6 +12,17 @@
 
 #include "../includes/libft.h"
 
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	str = (char *)s;
+	while (i < n)
+		*(str + i++) = 0;
+}
+
 void	*ft_memalloc(size_t size)
 {
 	void	*m;

@@ -6,7 +6,7 @@
 /*   By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 21:14:12 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/05/26 16:35:43 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/09/09 05:23:38 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char				*ft_strtoupper(char *str);
+char				*ft_strtolower(char *str);
 
 /*
 **	----- ----- -----
@@ -172,7 +174,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-void				ft_putnstr(const char *s, int len);
+void				ft_putnstr(const char *s, size_t len);
 
 /*
 **	----- ----- -----
@@ -216,6 +218,8 @@ void				set_flags(t_flag *fl, char c);
 char				*num_string_base(long long num, int base);
 char				*num_string_u_base(unsigned long long num, int base);
 void				print_one(char **str);
+int					ft_padding(char *buf, int len, t_mod mod, int nbyte);
+void				left_jut(char *buf, char *num, t_mod mod, int nbyte);
 
 t_mods				get_mods(char **str, va_list ap);
 t_mod				get_mod(char **str, va_list ap);
@@ -238,5 +242,6 @@ int					convert_b(t_mods modifiers, va_list ap, int i);
 int					c_to_buf(char *buf, t_mod modifiers, va_list ap);
 int					i_to_buf(char *buf, t_mod modifiers, va_list ap);
 int					s_to_buf(char *buf, t_mod modifiers, va_list ap);
+int					x_to_buf(char *buf, t_mod modifiers, va_list ap, int i);
 
 #endif

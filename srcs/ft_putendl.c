@@ -6,16 +6,22 @@
 /*   By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 00:13:27 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/05/06 18:10:38 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/08/18 20:04:26 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
+void	ft_putendl_fd(char const *s, int fd)
+{
+	if (s)
+		ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
+}
+
 void	ft_putendl(char const *s)
 {
-	char	*str;
-
-	str = "\n";
-	IF_THEN(s, write(1, s, LEN(s) && write(1, str, 1)));
+	if (s)
+		write(1, s, ft_strlen(s));
+	write(1, "\n", 1);
 }
