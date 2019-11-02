@@ -81,21 +81,18 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(SRCS:.c=.o))
 OBJ += $(addprefix $(OBJ_PATH)/,$(PRINTF:.c=.o))
 OBJ += $(addprefix $(OBJ_PATH)/,$(SPRINTF:.c=.o))
 
-FILES = $(addprefix $(LIB_PATH)/,$(SRCS))
-FILES += $(addprefix $(PRNTF_PATH)/,$(PRINTF))
-FILES += $(addprefix $(SPRNTF_PATH)/,$(SPRINTF))
-
 .PHONY: clean
 
 all: $(NAME)
 
 clean:
 		@printf "[rm      obj]\t[:          :]\r"
-		@rm -rf obj
+		@rm -f $(OBJ)
 		@printf "[$(RED)clean libft$(NC)]\t[:##########:]\r"
 
 fclean: clean
 		@printf "[rm    libft]\t[:          :]\r"
+		@rm -rf $(OBJ_PATH)
 		@rm -rf $(NAME)
 		@printf "[$(RED)full  clean$(NC)]\t[:##########:]\r"
 
