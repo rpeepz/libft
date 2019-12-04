@@ -6,7 +6,7 @@
 /*   By: rpapagna <rpapagna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 21:59:42 by rpapagna          #+#    #+#             */
-/*   Updated: 2019/11/01 22:20:57 by rpapagna         ###   ########.fr       */
+/*   Updated: 2019/11/17 21:57:12 by rpapagna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int					ft_atoi(const char *str)
 		return (res);
 	i = 0;
 	neg = 1;
-	while (IS_SPACE(str[i]) || str[i] == '\n' || str[i] == '\v')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r' ||\
+			str[i] == '\f' || str[i] == '\n' || str[i] == '\v')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -48,7 +49,8 @@ unsigned long long	ft_atoull(const char *str)
 	if (!str)
 		return (n);
 	i = 0;
-	while (IS_SPACE(str[i]) || str[i] == '\n' || str[i] == '\v')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r' ||\
+			str[i] == '\f' || str[i] == '\n' || str[i] == '\v')
 		i++;
 	while (ft_isdigit(str[i]))
 	{
